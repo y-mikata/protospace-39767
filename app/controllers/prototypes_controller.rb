@@ -37,10 +37,10 @@ class PrototypesController < ApplicationController
   end
 
   def update
-    prototype =Prototype.find(params[:id])
+    @prototype = Prototype.find(params[:id])
 
-    if prototype.update(prototype_params)
-      redirect_to root_path
+    if @prototype.update(prototype_params)
+      redirect_to prototype_path(@prototype)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -50,8 +50,8 @@ class PrototypesController < ApplicationController
   def prototype_params
     params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
   end
+end
 
-  def set_prototype
-    @prototype = Prototype.find(params[:id])
-  end
+def set_prototype
+  @prototype = Prototype.find(params[:id])
 end
