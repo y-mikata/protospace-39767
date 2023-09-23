@@ -1,0 +1,17 @@
+<main class="main">
+  <div class="inner">
+    <% if current_user %>
+      <div class="greeting">
+        <%= "こんにちは、" %>
+        <%= link_to "#{current_user.name}さん", prototypes_path, class: :greeting__link%>
+      </div>
+    <% else %>
+    ログインしていません
+    <% end %>
+  </div>
+  <div class="card__wrapper">
+    <% @prototypes.each do |prototype| %>
+      <%= render partial: "prototype", locals: { prototype: prototype } %>
+    <% end %>
+  </div>
+</main>
